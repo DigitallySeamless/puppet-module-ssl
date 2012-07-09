@@ -10,11 +10,11 @@ define ssl::config::cyrus (
   }
 
   if $tls_ca {
-    $tlscacertificatefile = "${ssl::variables::ssl_certs}/cert_${tls_ca}.crt"
+    $tlscacertificatefile = "${ssl::params::ssl_certs}/cert_${tls_ca}.crt"
     Ssl::Cert[$tls_ca] ~> Class['cyrus::service']
   }
   elsif $tls_chain {
-    $tlscacertificatefile = "${ssl::variables::ssl_chain}/chain_${tls_chain}.crt"
+    $tlscacertificatefile = "${ssl::params::ssl_chain}/chain_${tls_chain}.crt"
     Ssl::Chain[$tls_chain] ~> Class['cyrus::service']
   }
 

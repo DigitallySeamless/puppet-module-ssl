@@ -1,8 +1,8 @@
 define ssl::ca () {
-  include ssl::variables
+  include ssl::params
   include ssl::common
 
-  file { "${ssl::variables::ssl_local_certs}/ca_${name}.crt" :
+  file { "${ssl::params::ssl_local_certs}/ca_${name}.crt" :
     ensure  => file,
     mode    => '0444',
     group   => 'ssl-cert',

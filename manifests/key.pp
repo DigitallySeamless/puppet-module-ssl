@@ -1,8 +1,8 @@
 define ssl::key () {
-  include ssl::variables
+  include ssl::params
   include ssl::common
 
-  file { "${ssl::variables::ssl_private}/key_${name}.key":
+  file { "${ssl::params::ssl_private}/key_${name}.key":
     ensure  => file,
     mode    => '0440',
     group   => 'ssl-cert',

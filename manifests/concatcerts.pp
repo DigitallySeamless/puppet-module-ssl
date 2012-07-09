@@ -4,7 +4,7 @@ define ssl::concatcerts (
   $chain_name,
   $hash
   ) {
-  include ssl::variables
+  include ssl::params
   include ssl::common
 
   Ssl::Cert[$title] -> Ssl::Chain[$chain_name]
