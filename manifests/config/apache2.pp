@@ -16,9 +16,9 @@ define ssl::config::apache2 (
   }
 
   if ! $link_to {
-    Ssl::Key[$tls_key]              ~> Service['apache2']
-    Ssl::Cert[$name]                ~> Service['apache2']
-    if $tls_ca    { Ssl::Cert[$tls_ca]      ~> Service['apache2'] }
-    if $tls_chain { Ssl::Chain[$tls_chain]  ~> Service['apache2'] }
+    ssl::key[$tls_key]                      ~> Service['apache2']
+    ssl::cert[$name]                        ~> Service['apache2']
+    if $tls_ca    { ssl::cert[$tls_ca]      ~> Service['apache2'] }
+    if $tls_chain { ssl::chain[$tls_chain]  ~> Service['apache2'] }
   }
 }

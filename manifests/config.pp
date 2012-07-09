@@ -19,15 +19,15 @@ define ssl::config (
     file { "${ssl::params::ssl_root}/services/${name}":
       ensure  => link,
       target  => "${ssl::params::ssl_root}/services/${service}_${link_to}",
-      require => Ssl::Config["${service}_${link_to}"],
+      require => ssl::config["${service}_${link_to}"],
     }
   }
   else {
-    Ssl::Cert[$cert]         -> Ssl::Config[$name]
+    ssl::cert[$cert]         -> ssl::config[$name]
 
-    if $key     { Ssl::Key[$key]      -> Ssl::Config[$name] }
-    if $ca      { Ssl::Cert[$ca]      -> Ssl::Config[$name] }
-    if $chain   { Ssl::Chain[$chain]  -> Ssl::Config[$name] }
+    if $key     { ssl::key[$key]      -> Ssl::config[$name] }
+    if $ca      { ssl::cert[$ca]      -> Ssl::config[$name] }
+    if $chain   { ssl::chain[$chain]  -> Ssl::config[$name] }
 
     file { "${ssl::params::ssl_root}/services/${name}" :
       ensure  => file,
