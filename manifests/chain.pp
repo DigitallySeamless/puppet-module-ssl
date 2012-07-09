@@ -1,5 +1,5 @@
 define ssl::chain (
-  $source = "puppet:///files/ssl/chain_${name}.crt",
+  $source = "puppet:///files/ssl/chain_${name}.crt"
 ) {
   include ssl::variables
   include ssl::common

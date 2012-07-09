@@ -1,5 +1,5 @@
 define ssl::cert (
-  $source = "puppet:///files/ssl/cert_${name}.crt",
+  $source = "puppet:///files/ssl/cert_${name}.crt"
 ) {
   include ssl::variables
   include ssl::common
