@@ -28,7 +28,7 @@ define ssl::config (
       ssl::key { "${key}": }
     }
     if $ca { 
-      ssl::cert { "${ca}": }
+      ssl::ca { "${ca}": }
     }
     if $chain { 
       ssl::chain { "${chain}": }
