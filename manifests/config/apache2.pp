@@ -1,15 +1,15 @@
 define ssl::config::apache2 (
-    $tls_key    = false,
-    $tls_ca     = false,
-    $tls_chain  = false,
-    $link_to    = false
+    $tls_key      = false,
+    $tls_cert     = false,
+    $tls_chain    = false,
+    $link_to      = false
   ) {
 
   ssl::config { "apache2_${name}":
     service => 'apache2',
-    cert    => $name,
+    cert    => $tls_cert,
     key     => $tls_key,
-    ca      => $tls_ca,
+    ca      => false,
     chain   => $tls_chain,
     link_to => $link_to,
     notify  => Service['apache2']
