@@ -15,6 +15,11 @@ define ssl::config::apache2 (
     notify  => Service['apache2']
   }
 
+  file_line { "ssl_add_keys_for_${name}":
+    path => "${ssl::params::apache_conf}",
+    line => "Include ${ssl::params::ssl_root}/services/${name}",
+  }
+
   # if ! $link_to {
   #   ssl::key { "${tls_key}": } ~> Service['apache2']
   #   if $tls_chain { 
