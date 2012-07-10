@@ -19,7 +19,6 @@ define ssl::config (
     file { "${ssl::params::ssl_root}/services/${name}":
       ensure  => link,
       target  => "${ssl::params::ssl_root}/services/${service}_${link_to}",
-      require => ssl::config {"${service}_${link_to}": },
     }
   }
   else {
