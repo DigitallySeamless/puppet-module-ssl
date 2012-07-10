@@ -17,7 +17,7 @@ define ssl::config::apache2 (
 
   file_line { "ssl_add_keys_for_${name}":
     path => "${ssl::params::apache_conf}",
-    line => "Include ${ssl::params::ssl_root}/services/${name}",
+    line => "Include ${ssl::params::ssl_root}/services/apache2_${name}",
   }
 
   # if ! $link_to {
