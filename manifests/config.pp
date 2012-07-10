@@ -22,16 +22,16 @@ define ssl::config (
     }
   }
   else {
-    ssl::cert { "${cert}": }          -> ssl::config[$name]
+    ssl::cert { "${cert}": } 
 
     if $key { 
-      ssl::key { "${key}": }      -> ssl::config[$name] 
+      ssl::key { "${key}": }
     }
     if $ca { 
-      ssl::cert { "${ca}": }      -> ssl::config[$name] 
+      ssl::cert { "${ca}": }
     }
     if $chain { 
-      ssl::chain { "${chain}" }  -> ssl::config[$name] 
+      ssl::chain { "${chain}" }
     }
 
     file { "${ssl::params::ssl_root}/services/${name}" :
