@@ -31,7 +31,7 @@ define ssl::config (
       ssl::cert { "${ca}": }
     }
     if $chain { 
-      ssl::chain { "${chain}" }
+      ssl::chain { "${chain}": }
     }
 
     file { "${ssl::params::ssl_root}/services/${name}" :
