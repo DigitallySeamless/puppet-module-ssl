@@ -36,7 +36,7 @@ class ssl::common {
   }
 
   exec { 'update-ca-certificates':
-    command     => '/usr/sbin/update-ca-certificates',
+    command     => '/usr/sbin/update-ca-certificates --fresh',
     refreshonly => true,
     subscribe   => File[$ssl::params::ssl_local_certs]
   }
