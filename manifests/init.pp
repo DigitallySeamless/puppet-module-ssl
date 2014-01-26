@@ -5,7 +5,7 @@ class ssl::common (
   include ssl::params
   package { 'openssl': ensure => present }
 
-  if $ca_certificates_pkg {
+  if $ssl::params::ca_certificates_pkg {
     package { 'ca-certificates': ensure => present }
   }
 
@@ -56,10 +56,10 @@ class ssl::common (
     recurse => true,
   }
 
-  if $install_update_ca {
+  if $ssl::params::install_update_ca {
     file { "update-ca-certificates":
       ensure  => file,
-      path    => "${update_ca_path}/update-ca-certificates",
+      path    => "${ssl::params::update_ca_path}/update-ca-certificates",
       owner   => 'root',
       group   => 'root',
       mode    => '0755',
@@ -68,7 +68,7 @@ class ssl::common (
   }
 
   exec { 'update-ca-certificates':
-    command     => "${update_ca_path}/${update_ca_cmd}",
+    command     => "${ssl::params::update_ca_path}/${ssl::params::update_ca_cmd}",
     refreshonly => true,
     subscribe   => File[$ssl::params::ssl_local_certs]
   }
