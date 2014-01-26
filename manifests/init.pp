@@ -59,11 +59,11 @@ class ssl::common (
   if $install_update_ca {
     file { "update-ca-certificates":
       ensure  => file,
-      path    => "${update_ca_path}/update-ca-certificates"
+      path    => "${update_ca_path}/update-ca-certificates",
       owner   => 'root',
       group   => 'root',
       mode    => '0755',
-      content => template("${module_name}/scripts/update-ca-certificates.erb")
+      content => template("${module_name}/scripts/update-ca-certificates.erb"),
     }
   }
 
