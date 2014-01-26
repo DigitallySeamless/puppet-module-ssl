@@ -8,6 +8,7 @@ class ssl::params {
       $ssl_certs          = "${ssl_root}/certs"
       $ssl_private        = "${ssl_root}/private"
       $ssl_chain          = "${ssl_root}/certs"
+      $ssl_ca_conf        = '/etc/ca-certificates.conf'
       $ssl_system_certs   = '/usr/share/ca-certificates'
       $ssl_local_certs    = '/usr/local/share/ca-certificates'
       $ca_certificate_pkg = false
@@ -20,6 +21,7 @@ class ssl::params {
       $ssl_certs          = "${ssl_root}/certs"
       $ssl_private        = "${ssl_root}/private"
       $ssl_chain          = "${ssl_root}/certs"
+      $ssl_ca_conf        = '/etc/ca-certificates.conf'
       $ssl_system_certs   = '/usr/share/ca-certificates'
       $ssl_local_certs    = '/usr/local/share/ca-certificates'
       $ca_certificate_pkg = true
@@ -32,6 +34,7 @@ class ssl::params {
       $ssl_certs          = "${ssl_root}/certs"
       $ssl_private        = "${ssl_root}/private"
       $ssl_chain          = "${ssl_root}/certs"
+      $ssl_ca_conf        = '/etc/ca-certificates.conf'
       $ssl_system_certs   = '/usr/share/ca-certificates'
       $ssl_local_certs    = '/usr/local/share/ca-certificates'
       $ca_certificate_pkg = true
@@ -44,6 +47,7 @@ class ssl::params {
       $ssl_certs          = "${ssl_root}/certs"
       $ssl_private        = "${ssl_root}/private"
       $ssl_chain          = "${ssl_root}/certs"
+      $ssl_ca_conf        = '/etc/ca-certificates.conf'
       $ssl_system_certs   = '/usr/share/ca-certificates'
       $ssl_local_certs    = '/usr/local/share/ca-certificates'
       $ca_certificate_pkg = true
@@ -59,6 +63,7 @@ class ssl::params {
       $ssl_certs          = "${ssl_root}/certs"
       $ssl_private        = "${ssl_root}/private"
       $ssl_chain          = "${ssl_root}/certs"
+      $ssl_ca_conf        = '/etc/ca-certificates.conf'
       $ssl_system_certs   = '/usr/share/ca-certificates'
       $ssl_local_certs    = '/usr/local/share/ca-certificates'
       $ca_certificate_pkg = true
@@ -72,6 +77,7 @@ class ssl::params {
       $ssl_certs          = "${ssl_root}/certs"
       $ssl_private        = "${ssl_root}/private"
       $ssl_chain          = "${ssl_root}/certs"
+      $ssl_ca_conf        = '/etc/ca-certificates.conf'
       $ssl_system_certs   = '/usr/share/ca-certificates'
       $ssl_local_certs    = '/usr/local/share/ca-certificates'
       $ca_certificate_pkg = true
@@ -88,6 +94,7 @@ class ssl::params {
           $ssl_certs          = "${ssl_root}/certs"
           $ssl_private        = "${ssl_root}/private"
           $ssl_chain          = "${ssl_root}/certs"
+          $ssl_ca_conf        = '/etc/ca-certificates.conf'
           $ssl_system_certs   = '/usr/share/ca-certificates'
           $ssl_local_certs    = '/usr/local/share/ca-certificates'
           $ca_certificate_pkg = true

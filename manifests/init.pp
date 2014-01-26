@@ -65,6 +65,16 @@ class ssl::common (
       mode    => '0755',
       content => template("${module_name}/scripts/update-ca-certificates.erb"),
     }
+
+    file { "ca-certificates.conf":
+      ensure  => file,
+      replace => 'no',
+      path    => ${ssl::params::update_ca_conf},
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      content => "",
+    }
   }
 
   exec { 'update-ca-certificates':

@@ -37,7 +37,7 @@ do
   shift
 done
 
-CERTSCONF=/etc/ca-certificates.conf
+CERTSCONF=<%= scope.lookupvar("ssl::params::ssl_ca_conf") %>
 CERTSDIR=<%= scope.lookupvar("ssl::params::ssl_system_certs") %>
 LOCALCERTSDIR=<%= scope.lookupvar("ssl::params::ssl_local_certs") %>
 CERTBUNDLE=ca-certificates.crt
