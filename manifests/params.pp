@@ -11,6 +11,7 @@ class ssl::params {
       $ssl_ca_conf        = '/etc/ca-certificates.conf'
       $ssl_system_certs   = '/usr/share/ca-certificates'
       $ssl_local_certs    = '/usr/local/share/ca-certificates'
+      $ssl_layout_style   = 'Debian'
       $ca_certificate_pkg = false
       $install_update_ca  = true
       $update_ca_path     = '/usr/sbin'
@@ -24,6 +25,7 @@ class ssl::params {
       $ssl_ca_conf        = '/etc/ca-certificates.conf'
       $ssl_system_certs   = '/usr/share/ca-certificates'
       $ssl_local_certs    = '/usr/local/share/ca-certificates'
+      $ssl_layout_style   = 'Debian'
       $ca_certificate_pkg = true
       $install_update_ca  = false
       $update_ca_path     = '/usr/sbin'
@@ -37,6 +39,7 @@ class ssl::params {
       $ssl_ca_conf        = '/etc/pki/default.cfg'
       $ssl_system_certs   = '/etc/pki/ca-trust/source/anchors'
       $ssl_local_certs    = '/etc/pki/ca-trust/source/anchors'
+      $ssl_layout_style   = 'RedHat'
       $ca_certificate_pkg = true
       $install_update_ca  = false
       $update_ca_path     = '/usr/bin'
@@ -50,6 +53,7 @@ class ssl::params {
       $ssl_ca_conf        = '/etc/ca-certificates.conf'
       $ssl_system_certs   = '/usr/share/ca-certificates'
       $ssl_local_certs    = '/usr/local/share/ca-certificates'
+      $ssl_layout_style   = 'Debian'
       $ca_certificate_pkg = true
       $install_update_ca  = true
       $update_ca_path     = '/usr/sbin'
@@ -66,6 +70,7 @@ class ssl::params {
       $ssl_ca_conf        = '/etc/ca-certificates.conf'
       $ssl_system_certs   = '/usr/share/ca-certificates'
       $ssl_local_certs    = '/usr/local/share/ca-certificates'
+      $ssl_layout_style   = 'Debian'
       $ca_certificate_pkg = true
       $install_update_ca  = false
       $update_ca_path     = '/usr/bin'
@@ -80,6 +85,7 @@ class ssl::params {
       $ssl_ca_conf        = '/etc/ca-certificates.conf'
       $ssl_system_certs   = '/usr/share/ca-certificates'
       $ssl_local_certs    = '/usr/local/share/ca-certificates'
+      $ssl_layout_style   = 'Debian'
       $ca_certificate_pkg = true
       $install_update_ca  = false
       $update_ca_path     = '/usr/sbin'
@@ -97,6 +103,7 @@ class ssl::params {
           $ssl_ca_conf        = '/etc/ca-certificates.conf'
           $ssl_system_certs   = '/usr/share/ca-certificates'
           $ssl_local_certs    = '/usr/local/share/ca-certificates'
+          $ssl_layout_style   = 'Debian'
           $ca_certificate_pkg = true
           $install_update_ca  = false
           $update_ca_path     = '/usr/sbin'
