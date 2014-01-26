@@ -34,13 +34,13 @@ class ssl::params {
       $ssl_certs          = "${ssl_root}/certs"
       $ssl_private        = "${ssl_root}/private"
       $ssl_chain          = "${ssl_root}/certs"
-      $ssl_ca_conf        = '/etc/ca-certificates.conf'
-      $ssl_system_certs   = '/usr/share/ca-certificates'
-      $ssl_local_certs    = '/usr/local/share/ca-certificates'
+      $ssl_ca_conf        = '/etc/pki/default.cfg'
+      $ssl_system_certs   = '/etc/pki/ca-trust/source/anchors'
+      $ssl_local_certs    = '/etc/pki/ca-trust/source/anchors'
       $ca_certificate_pkg = true
-      $install_update_ca  = true
-      $update_ca_path     = '/usr/sbin'
-      $update_ca_cmd      = 'update-ca-certificates --fresh'
+      $install_update_ca  = false
+      $update_ca_path     = '/usr/bin'
+      $update_ca_cmd      = 'update-ca-trust extract'
     }
     'SuSE': {
       $ssl_root           = '/etc/ssl'
