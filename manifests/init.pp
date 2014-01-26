@@ -1,6 +1,13 @@
-class ssl::common {
+class ssl::common (
+  $local_cert_install_dir = "puppet_managed"
+) {
+
   include ssl::params
   package { 'openssl': ensure => present }
+
+  if $ssl::params::ca_certificates_pkg {
+    package { 'ca-certificates': ensure => present }
+  }
 
   group { 'ssl-cert':
     ensure => present,
@@ -23,8 +30,24 @@ class ssl::common {
   file { $ssl::params::ssl_local_certs:
     ensure  => directory,
     mode    => '2775',
-    purge   => true,
     recurse => true,
+  }
+
+  if $ssl::params::ssl_layout_style == 'Debian' {
+    file { "${ssl::params::ssl_local_certs}/puppet_managed" :
+      ensure  => directory,
+      mode    => '2775',
+      purge   => true,
+      recurse => true,
+    }
+
+    if $local_cert_install_dir != "puppet_managed" {
+      file { "${ssl::params::ssl_local_certs}/${local_cert_install_dir}" :
+        ensure  => directory,
+        mode    => '2775',
+        recurse => true,
+      }
+    }
   }
 
   file { $ssl::params::ssl_private:
@@ -35,8 +58,29 @@ class ssl::common {
     recurse => true,
   }
 
+  if $ssl::params::install_update_ca {
+    file { "update-ca-certificates":
+      ensure  => file,
+      path    => "${ssl::params::update_ca_path}/update-ca-certificates",
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0755',
+      content => template("${module_name}/scripts/update-ca-certificates.erb"),
+    }
+
+    file { "ca-certificates.conf":
+      ensure  => file,
+      replace => 'no',
+      path    => $ssl::params::ssl_ca_conf,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      content => "",
+    }
+  }
+
   exec { 'update-ca-certificates':
-    command     => '/usr/sbin/update-ca-certificates',
+    command     => "${ssl::params::update_ca_path}/${ssl::params::update_ca_cmd}",
     refreshonly => true,
     subscribe   => File[$ssl::params::ssl_local_certs]
   }
