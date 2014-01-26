@@ -69,7 +69,7 @@ class ssl::common (
     file { "ca-certificates.conf":
       ensure  => file,
       replace => 'no',
-      path    => ${ssl::params::ssl_ca_conf},
+      path    => $ssl::params::ssl_ca_conf,
       owner   => 'root',
       group   => 'root',
       mode    => '0644',
