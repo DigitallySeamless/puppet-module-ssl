@@ -36,10 +36,12 @@ class ssl::common (
     recurse => true,
   }
 
-  file { "${ssl::params::ssl_local_certs}/${local_cert_install_dir}" :
-    ensure  => directory,
-    mode    => '2775',
-    recurse => true,
+  if $local_cert_install_dir != "puppet_managed" {
+    file { "${ssl::params::ssl_local_certs}/${local_cert_install_dir}" :
+      ensure  => directory,
+      mode    => '2775',
+      recurse => true,
+    }
   }
 
   file { $ssl::params::ssl_private:
