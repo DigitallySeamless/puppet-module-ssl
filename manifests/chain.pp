@@ -14,12 +14,21 @@ define ssl::chain (
     $prefix = ""
   }
 
-  file { "${ssl::params::ssl_local_certs}/${local_cert_install_dir}/${prefix}${name}.crt" :
+  case $ssl::params::ssl_layout_style {
+    "RedHat": {
+      $file_path = "${ssl::params::ssl_local_certs}/${prefix}${name}.crt"
+    }
+    default, "Debian": {
+      $file_path = "${ssl::params::ssl_local_certs}/${local_cert_install_dir}/${prefix}${name}.crt"
+    }
+  }
+
+  file { "${file_path}" :
     ensure  => file,
     mode    => '0444',
     group   => 'ssl-cert',
     source  => $source,
     require => Package['openssl'],
-    notify   => Exec['update-ca-certificates'],
+    notify  => Exec['update-ca-certificates'],
   }
 }
