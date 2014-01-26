@@ -1,10 +1,20 @@
 define ssl::chain (
-  $source = "puppet:///files/ssl/chain_${name}.crt"
+  $source = "puppet:///files/ssl/${name}.crt",
+  $local_cert_install_dir = "puppet_managed",
 ) {
   include ssl::params
-  include ssl::common
+  class { '::ssl::common' :
+    local_cert_install_dir => $local_cert_install_dir,
+  }
 
-  file { "${ssl::params::ssl_local_certs}/chain_${name}.crt" :
+  if $local_cert_install_dir == 'puppet_managed' {
+    $prefix = "chain_"
+  }
+  else {
+    $prefix = ""
+  }
+
+  file { "${ssl::params::ssl_local_certs}/${local_cert_install_dir}/${prefix}${name}.crt" :
     ensure  => file,
     mode    => '0444',
     group   => 'ssl-cert',

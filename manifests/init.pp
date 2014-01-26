@@ -1,4 +1,7 @@
-class ssl::common {
+class ssl::common (
+  $local_cert_install_dir = "puppet_managed"
+) {
+
   include ssl::params
   package { 'openssl': ensure => present }
 
@@ -23,8 +26,22 @@ class ssl::common {
   file { $ssl::params::ssl_local_certs:
     ensure  => directory,
     mode    => '2775',
+    recurse => true,
+  }
+
+  file { "${ssl::params::ssl_local_certs}/puppet_managed" :
+    ensure  => directory,
+    mode    => '2775',
     purge   => true,
     recurse => true,
+  }
+
+  if $local_cert_install_dir != "puppet_managed" {
+    file { "${ssl::params::ssl_local_certs}/${local_cert_install_dir}" :
+      ensure  => directory,
+      mode    => '2775',
+      recurse => true,
+    }
   }
 
   file { $ssl::params::ssl_private:
